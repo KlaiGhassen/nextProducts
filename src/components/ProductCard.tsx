@@ -1,6 +1,5 @@
 type ProductCardProps = {
   title: string;
-
   img: string;
 };
 

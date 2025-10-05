@@ -1,11 +1,13 @@
 "use client";
 
+import { AppContext } from "@/app/context/applicationContext";
 import Link from "next/link";
 
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const { user } = useContext(AppContext);
 
   return (
     <nav className="bg-blue-700 text-white shadow-md sticky top-0 z-50">
@@ -36,7 +38,7 @@ export default function Navbar() {
         </button>
 
         <div className="hidden sm:flex space-x-6">
-          <Link href="/products" className="hover:underline">
+          <Link href="/" className="hover:underline">
             Products
           </Link>
 
@@ -47,6 +49,12 @@ export default function Navbar() {
           <Link href="/contact" className="hover:underline">
             Contact
           </Link>
+          {!user && (
+            <Link href="/sign-in" className="hover:underline">
+              signIn
+            </Link>
+          )}
+          {user && <span> {user.fullName}</span>}
         </div>
       </div>
 
